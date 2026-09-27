@@ -4,6 +4,7 @@ work: "夜を歩く"
 workId: "yoru-wo-aruku"
 episode: 2
 date: 2026-09-21
+draft: false
 ---
 
 目を覚ますと、雨は止んでいた。

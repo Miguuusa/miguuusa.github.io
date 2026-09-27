@@ -4,14 +4,17 @@ import '../../styles/global.css';
 
 const works = await getCollection('works');
 
-works.sort((a, b) => a.data.order - b.data.order);
+const publishedWorks = works
+	.filter((work) => work.data.draft === false)
+	.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <html lang="ja">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-	<meta name="robots" content="noindex, nofollow" />
+		<meta name="robots" content="noindex, nofollow" />
+
 		<title>NOVELS | FLaSH</title>
 	</head>
 
@@ -31,7 +34,7 @@ works.sort((a, b) => a.data.order - b.data.order);
 
 			<section class="works">
 				{
-					works.map((work) => (
+					publishedWorks.map((work) => (
 						<a
 							class="work-card"
 							href={`/novels/works/${work.id}`}

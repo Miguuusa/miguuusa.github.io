@@ -6,7 +6,11 @@ export async function getStaticPaths() {
 	const entries = await getCollection('diary');
 
 	return entries
-		.filter((entry) => entry.data.type === 'long')
+		.filter(
+			(entry) =>
+				entry.data.type === 'long' &&
+				entry.data.draft === false
+		)
 		.map((entry) => ({
 			params: { id: entry.id },
 			props: { entry },
@@ -21,7 +25,8 @@ const { Content } = await render(entry);
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-<meta name="robots" content="noindex, nofollow" />
+		<meta name="robots" content="noindex, nofollow" />
+
 		<title>{entry.data.title} | DIARY | FLaSH</title>
 	</head>
 

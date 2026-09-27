@@ -4,6 +4,7 @@ description: "雨の夜から始まる物語。"
 genre: "現代"
 status: "連載中"
 order: 1
+draft: false
 ---
 
 ここには作品についての詳しい紹介文を書けます。

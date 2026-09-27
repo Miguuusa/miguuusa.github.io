@@ -6,9 +6,17 @@ export async function getStaticPaths() {
 	const works = await getCollection('works');
 	const novels = await getCollection('novels');
 
-	return works.map((work) => {
+	const publishedWorks = works.filter(
+		(work) => work.data.draft === false
+	);
+
+	return publishedWorks.map((work) => {
 		const episodes = novels
-			.filter((novel) => novel.data.workId === work.id)
+			.filter(
+				(novel) =>
+					novel.data.workId === work.id &&
+					novel.data.draft === false
+			)
 			.sort((a, b) => a.data.episode - b.data.episode);
 
 		return {
@@ -31,8 +39,9 @@ const { Content } = await render(work);
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-<meta name="robots" content="noindex, nofollow" />
-		<title>{work.data.title} | FLasH</title>
+		<meta name="robots" content="noindex, nofollow" />
+
+		<title>{work.data.title} | FLaSH</title>
 	</head>
 
 	<body>

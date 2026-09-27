@@ -5,7 +5,11 @@ import '../../styles/global.css';
 export async function getStaticPaths() {
 	const novels = await getCollection('novels');
 
-	return novels.map((novel) => ({
+	const publishedNovels = novels.filter(
+		(novel) => novel.data.draft === false
+	);
+
+	return publishedNovels.map((novel) => ({
 		params: {
 			id: novel.id,
 		},
@@ -21,7 +25,11 @@ const { Content } = await render(novel);
 const allNovels = await getCollection('novels');
 
 const episodes = allNovels
-	.filter((item) => item.data.workId === novel.data.workId)
+	.filter(
+		(item) =>
+			item.data.workId === novel.data.workId &&
+			item.data.draft === false
+	)
 	.sort((a, b) => a.data.episode - b.data.episode);
 
 const currentIndex = episodes.findIndex(
@@ -43,7 +51,8 @@ const nextEpisode =
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-<meta name="robots" content="noindex, nofollow" />
+		<meta name="robots" content="noindex, nofollow" />
+
 		<title>{novel.data.title} | FLaSH</title>
 	</head>
 

@@ -4,12 +4,15 @@ import '../../styles/global.css';
 
 const diaryEntries = await getCollection('diary');
 
-diaryEntries.sort(
-	(a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+const publishedEntries = diaryEntries
+	.filter((entry) => entry.data.draft === false)
+	.sort(
+		(a, b) =>
+			b.data.date.getTime() - a.data.date.getTime()
+	);
 
 const renderedEntries = await Promise.all(
-	diaryEntries.map(async (entry) => {
+	publishedEntries.map(async (entry) => {
 		const { Content } = await render(entry);
 
 		return {
@@ -24,7 +27,8 @@ const renderedEntries = await Promise.all(
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-<meta name="robots" content="noindex, nofollow" />
+		<meta name="robots" content="noindex, nofollow" />
+
 		<title>DIARY | FLaSH</title>
 	</head>
 

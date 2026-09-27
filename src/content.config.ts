@@ -12,6 +12,7 @@ const novels = defineCollection({
 		workId: z.string(),
 		episode: z.number(),
 		date: z.coerce.date(),
+		draft: z.boolean().default(true),
 	}),
 });
 
@@ -26,6 +27,7 @@ const works = defineCollection({
 		genre: z.string(),
 		status: z.string(),
 		order: z.number(),
+		draft: z.boolean().default(true),
 	}),
 });
 
@@ -39,6 +41,7 @@ const diary = defineCollection({
 		date: z.coerce.date(),
 		type: z.enum(['short', 'long']),
 		summary: z.string().optional(),
+		draft: z.boolean().default(true),
 	}),
 });
 
