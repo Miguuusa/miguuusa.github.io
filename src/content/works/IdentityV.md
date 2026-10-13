@@ -1,6 +1,6 @@
 ---
 title: "IdentityV SS"
-description: "デミグラス短編詰め"
+description: "デミグラス短編"
 genre: "identityv"
 status: "随時更新"
 order: 3
@@ -12,4 +12,4 @@ draft: false
 それぞれ独立した短いお話です。
 時系列や設定が異なるものも含まれます。
 
-作品ごとの注意事項は、各話の目次をご確認ください。
+作品ごとの概要は、各話の目次をご確認ください。
