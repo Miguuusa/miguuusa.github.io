@@ -12,6 +12,7 @@ const novels = defineCollection({
 		workId: z.string(),
 		episode: z.number(),
 		date: z.coerce.date(),
+		summary: z.string().optional(),
 		draft: z.boolean().default(true),
 	}),
 });

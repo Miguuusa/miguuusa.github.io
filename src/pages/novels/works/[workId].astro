@@ -69,13 +69,25 @@ const { Content } = await render(work);
 				{
 					episodes.map((episode) => (
 						<a href={`/novels/${episode.id}`}>
-							<span>
+							<span class="episode-number">
 								{episode.data.episode
 									.toString()
 									.padStart(2, '0')}
 							</span>
 
-							<p>{episode.data.title}</p>
+							<div class="episode-info">
+								<p class="episode-title">
+									{episode.data.title}
+								</p>
+
+								{
+									episode.data.summary && (
+										<p class="episode-summary">
+											{episode.data.summary}
+										</p>
+									)
+								}
+							</div>
 						</a>
 					))
 				}
@@ -141,21 +153,17 @@ const { Content } = await render(work);
 		font-size: 0.8rem;
 		font-weight: normal;
 		letter-spacing: 0.2em;
-
 		border-bottom: 1px solid var(--border);
-
 		padding: 20px 0;
 		margin: 0;
 	}
 
 	.contents a {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		gap: 30px;
-
 		color: inherit;
 		text-decoration: none;
-
 		padding: 20px 5px;
 		border-bottom: 1px solid var(--border);
 	}
@@ -164,13 +172,26 @@ const { Content } = await render(work);
 		opacity: 0.55;
 	}
 
-	.contents span {
+	.episode-number {
 		color: var(--text-light);
 		font-size: 0.8rem;
+		padding-top: 3px;
 	}
 
-	.contents p {
+	.episode-info {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.episode-title {
 		margin: 0;
+	}
+
+	.episode-summary {
+		color: var(--text-light);
+		font-size: 0.8rem;
+		line-height: 1.8;
+		margin: 8px 0 0;
 	}
 
 	@media (max-width: 600px) {
@@ -188,6 +209,10 @@ const { Content } = await render(work);
 
 		.introduction {
 			margin-bottom: 60px;
+		}
+
+		.contents a {
+			gap: 20px;
 		}
 	}
 </style>
